@@ -1,0 +1,53 @@
+{
+	"name": "che-devfile-ext",
+	"displayName": "web-ide/che-devfile-ext",
+	"publisher": "web-ide",
+	"description": "Eclipse-Che Devfile service",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/amos42/che-devfile-ext.git"
+	},
+	"version": "0.0.2",
+	"engines": {
+		"vscode": "^1.65.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+        "onCommand:che-devfile-ext.command-list"
+    ],
+	"main": "./out/main.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "che-devfile-ext.command-list",
+				"title": "Devfile: Command List"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint src --ext ts",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+		"vscode:prepublish": "npm run esbuild-base -- --minify",
+		"esbuild": "npm run esbuild-base -- --sourcemap",
+		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+		"test-compile": "tsc -p ./",
+		"package": "vsce package"
+	},
+	"dependencies": {
+		"@devfile/api": "^2.2.1-alpha-1667236163"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.4",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.56.0",
+		"@typescript-eslint/eslint-plugin": "^4.23.0",
+		"@typescript-eslint/parser": "^4.23.0",
+		"esbuild": "^0.17.18",
+		"eslint": "^7.26.0",
+		"typescript": "^4.1.3",
+		"vsce": "^2.15.0"
+	}
+}
